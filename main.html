@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>小测报告助手 - 报告管理</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>小测报告助手</h1>
+    
+    <!-- 配置部分 -->
+    <div class="config-section">
+      <h3>配置信息</h3>
+      
+      <div class="form-group">
+        <label for="classId">选择班级</label>
+        <select id="classId"></select>
+      </div>
+      
+      <div class="form-group">
+        <label for="examLesson">选择课时</label>
+        <select id="examLesson"></select>
+      </div>
+      
+      <button id="fetchReportsBtn">获取报告</button>
+    </div>
+    
+    <!-- 进度条 -->
+    <div class="progress-container hidden" id="progressContainer">
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <div class="progress-text">处理中: 0/0 (0%)</div>
+    </div>
+    
+    <!-- 状态信息 -->
+    <div id="statusMessage" class="status-fixed info hidden">
+      <div class="status-content"></div>
+    </div>
+    
+    <!-- 批量操作区域 -->
+    <div class="bulk-actions hidden" id="bulkActions">
+      <!-- 知识点计划编辑 -->
+      <div class="plan-editor">
+        <h3>知识点计划</h3>
+        <div class="instructions">
+          这部分内容是为了方便AI了解每单元都学过哪些知识点,从而得出更精准的评价。格式为每行一个知识点，格式为：第X单元:知识点1,知识点2...
+        </div>
+        <textarea id="planEditor" rows="10" style="width: 100%; height: 345px; margin: 10px 0; padding: 10px; box-sizing: border-box;"></textarea>
+        <button id="savePlanBtn">保存知识点计划</button>
+      </div>
+      
+      <!-- 报告生成控制 -->
+      <div class="report-controls">
+        <h3>报告生成</h3>
+        <div class="report-actions">
+          <div class="form-group-container">
+            <div class="form-group">
+              <label for="endTime">截止时间</label>
+              <input type="datetime-local" id="endTime">
+            </div>
+            <div class="form-group">
+              <label for="apiKey">AI API-KEY</label>
+              <input type="password" id="apiKey" placeholder="请输入AI API-KEY">
+            </div>
+          </div>
+          <div class="button-group">
+            <button id="generateAllBtn">重新生成所有报告</button>
+            <button id="submitAllBtn">提交所有修改</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 学生报告卡片 -->
+    <div class="student-cards" id="studentCards">
+      <!-- 学生卡片将通过JavaScript动态添加 -->
+    </div>
+  </div>
+  
+  <template id="studentCardTemplate">
+    <div class="student-card" data-student-id="">
+      <div class="student-header">
+        <div class="student-name"></div>
+        <div class="student-actions">
+          <button class="generate-btn">重新生成</button>
+          <button class="submit-btn">提交</button>
+        </div>
+      </div>
+      
+      <div class="report-section">
+        <h4>平时表现评价</h4>
+        <textarea class="normal-report"></textarea>
+      </div>
+      
+      <div class="report-section">
+        <h4>考试评价</h4>
+        <textarea class="exam-report"></textarea>
+      </div>
+    </div>
+  </template>
+  
+  <script type="module" src="main.js"></script>
+</body>
+</html> 

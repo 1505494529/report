@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "小测报告助手",
+  "version": "1.0",
+  "description": "生成并更新学生小测报告的Edge插件",
+  "permissions": [
+    "storage",
+    "cookies",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://icodecontest-online-api.youdao.com/*",
+    "https://icode-admin.youdao.com/*",
+    "https://ark.cn-beijing.volces.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://icode-admin.youdao.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  }
+} 
